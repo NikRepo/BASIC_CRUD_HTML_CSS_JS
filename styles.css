@@ -30,7 +30,7 @@ input[type=text], input[type=number] {
 }
 
 input[type=submit]{
-    width: 30%;
+    width: 25%;
     background-color: #ddd;
     color: #000;
     padding: 14px 20px;
