@@ -4,6 +4,7 @@ body > table{
 
 table{
     border-collapse: collapse;
+    background-color: grey;
 }
 table.list{
     width:100%;
