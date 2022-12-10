@@ -12,6 +12,15 @@ function onFormSubmit() {
     resetform();
   }
 }
+
+function autofilltitle(){
+  // var fn=document.getElementById('fullName');
+  // var emp=document.getElementById('empCode');
+
+  // var data =fn.value;
+  // emp.value=fn.value;
+
+}
 function OnStartSubmit()
 {
   //var tempData = { foo: "sample", bar: "sample" }
