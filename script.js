@@ -1,6 +1,7 @@
 var selectedRow = null;
 function onFormSubmit() {
-  if (IsValid()) {
+  if (IsValid()) 
+  {
     var frmData = readFormData();
     if (selectedRow == null) {
       insertNewRecord(frmData);
@@ -11,6 +12,31 @@ function onFormSubmit() {
     resetform();
   }
 }
+
+function autofilltitle(){
+  // var fn=document.getElementById('fullName');
+  // var emp=document.getElementById('empCode');
+
+  // var data =fn.value;
+  // emp.value=fn.value;
+
+}
+function OnStartSubmit()
+{
+  //var tempData = { foo: "sample", bar: "sample" }
+  //document.getElementById("myJson").innerHTML = JSON.stringify(tempData, undefined, 2);
+  //getData();
+  FetchTempData();
+}
+async function FetchTempData() {
+  //var data = { foo: "sample", bar: "sample" }
+  console.log("start fetching...");
+  const tempData = await GetGitUsers();
+  console.log("2:" + tempData);
+  document.getElementById("myJson").innerHTML = JSON.stringify(tempData, undefined, 2);
+  console.log("done....");
+}
+
 function readFormData() {
   var frmData = {};
   frmData["fullName"] = document.getElementById("fullName").value;
