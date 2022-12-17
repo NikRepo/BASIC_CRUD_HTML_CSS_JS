@@ -25,10 +25,10 @@ const userAction1 = async () => {
     console.log(myJson);
     //document.getElementById("myJson").innerHTML = JSON.stringify(myJson, undefined, 2);
     return myJson;
-  }  n
+  } 
   
   const  GetGitUsers = async () => {
-    console.log("Inside Fetch url"); nbbbb
+    console.log("Inside Fetch url"); 
     const response = await fetch('https://api.github.com/users');
     const myJson = await response.json(); //extract JSON from the http response
     // do something with myJson
