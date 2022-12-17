@@ -1,7 +1,76 @@
+var selectedUser = null;
+var subjectObject = {
+  "Front-end": {
+    "HTML": ["Links", "Images", "Tables", "Lists"],
+    "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
+    "JavaScript": ["Variables", "Operators", "Functions", "Conditions"]    
+  },
+  "Back-end": {
+    "PHP": ["Variables", "Strings", "Arrays"],
+    "SQL": ["SELECT", "UPDATE", "DELETE"]
+  }
+}
+var usersArr = [];
+async function OnGetGitUsers() 
+{
+  usersArr = await GetGitUsers();
+  console.log(usersArr);
+  if(usersArr)
+  {
+    var subjectSel = document.getElementById("users");
+    usersArr.forEach(user => {
+      console.log(user.login);
+      subjectSel.options[subjectSel.options.length] = new Option(user.login, user.id);
+    });
+  }
+  subjectSel.onchange = function () {
+    //this.value will get on  change event
+    console.log(this.value);
+    var user = null;
+
+    for(let i = 0; i < usersArr.length; i++) 
+    {
+      let obj = usersArr[i];
+      console.log(obj.id);
+      //this.Value is string and obj.id is integer
+      if(obj.id.toString()===this.value)
+      {
+        user = obj;
+        console.log(JSON.stringify(user));
+        break;
+      }
+    }
+  };
+}
+
+// window.onload = function() {
+//   var subjectSel = document.getElementById("users");
+//   var topicSel = document.getElementById("topic");
+//   for (var x in subjectObject) {
+//     subjectSel.options[subjectSel.options.length] = new Option(x, x);
+//   }
+//   subjectSel.onchange = function() {
+//     //empty Topics- dropdowns
+//     topicSel.length = 1;
+//     //display correct values
+//     //this.value will get on  change event
+//     for (var y in subjectObject[this.value]) {
+//       topicSel.options[topicSel.options.length] = new Option(y, y);
+//     }
+//   }
+// }
+
 var selectedRow = null;
+function InitialTask()
+{
+  var mybar = document.getElementById("myBar");
+  mybar.textContent = "";
+  mybar.style.width = 0 + "%";
+}
 function onFormSubmit() {
   if (IsValid()) 
   {
+    console.log(document.getElementById("users").value);
     var frmData = readFormData();
     if (selectedRow == null) {
       insertNewRecord(frmData);
@@ -21,13 +90,120 @@ function autofilltitle(){
   // emp.value=fn.value;
 
 }
-function OnStartSubmit()
+
+
+var intervalId = null;
+var val = 0;
+var isComplete = false;
+
+async function OnStartSubmit()
 {
   //var tempData = { foo: "sample", bar: "sample" }
   //document.getElementById("myJson").innerHTML = JSON.stringify(tempData, undefined, 2);
   //getData();
-  FetchTempData();
+
+  var mybar = document.getElementById("myBar");
+  mybar.style.width = 0 + "%";
+  mybar.textContent = "";
+
+  intervalId = setInterval(DisplayProgress, 500);
+  console.log("Time consuming process started");
+  isComplete  = await PerformDummyProcess();
+  console.log("Time consuming process done");
+
+  if(isComplete)
+  {
+    console.log("Clearing interval");
+    clearInterval(intervalId);
+    var mybar = document.getElementById("myBar");
+    mybar.style.width = 100 + "%";
+    mybar.textContent = "SUCESS";
+  }
+  else
+  {
+    var mybar = document.getElementById("myBar");
+    mybar.style.width = 100 + "%";
+    mybar.textContent = "FAILED";
+  }
+  console.log("done");
 }
+
+
+function DisplayProgress ()
+{
+  var time  = Date();
+  //console.log(time);
+  var mybar = document.getElementById("myBar");
+  if(val===100)
+  {
+    val = 10;
+  }
+  else{
+    val = val + 10;
+  }
+  mybar.style.width = val + "%";
+}
+
+async function PerformDummyProcess()
+{  
+  console.log("Time consuming process ....");
+  for (let index = 0; index < 1000; index++) {
+    const tempData = await GetGitUsers();
+    console.log(index);
+    //var elem = document.getElementById("myBar");
+    //elem.style.width = index/10 + "%";
+  }
+  return true;
+}
+
+
+function waitFor(conditionFunction) {
+
+    const poll = resolve => {
+    if(conditionFunction())
+    {
+      var elem = document.getElementById("myBar");
+      elem.style.width = 2 + "%";
+      resolve();
+    } 
+    else
+    {
+      var elem = document.getElementById("myBar");
+      var num = Math.floor(Math.random() * 101);
+      //console.log("random val " + num);
+      elem.style.width = num + "%";
+      setTimeout(_ => poll(resolve), 400);
+    } 
+  }
+
+  return new Promise(poll);
+}
+async function demo() {
+ // await waitFor(_ => flag === true);
+  await waitFor(Test1);
+  console.log('the wait is over!');
+}
+var i = 0;
+function move() {
+
+
+  // if (i == 0) {
+  //   i = 1;
+  //   var elem = document.getElementById("myBar");
+  //   var width = 1;
+  //   var id = setInterval(frame, 10);
+  //   function frame() {
+  //     if (width >= 100) {
+  //       clearInterval(id);
+  //       i = 0;
+  //     } else {
+  //       width++;
+  //       elem.style.width = width + "%";
+  //     }
+  //   }
+  // }
+}
+
 async function FetchTempData() {
   //var data = { foo: "sample", bar: "sample" }
   console.log("start fetching...");
