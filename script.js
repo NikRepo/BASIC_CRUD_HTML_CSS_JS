@@ -102,30 +102,52 @@ async function OnStartSubmit()
   //document.getElementById("myJson").innerHTML = JSON.stringify(tempData, undefined, 2);
   //getData();
 
-  var mybar = document.getElementById("myBar");
-  mybar.style.width = 0 + "%";
-  mybar.textContent = "";
-
-  intervalId = setInterval(DisplayProgress, 500);
-  console.log("Time consuming process started");
-  isComplete  = await PerformDummyProcess();
-  console.log("Time consuming process done");
-
-  if(isComplete)
-  {
-    console.log("Clearing interval");
-    clearInterval(intervalId);
-    var mybar = document.getElementById("myBar");
-    mybar.style.width = 100 + "%";
-    mybar.textContent = "SUCESS";
+  var table = document.getElementById("employeeList");
+  var body =  table.getElementsByTagName("tbody")[0];
+  // console.log(body);
+  // body.children.forEach(element => {
+  //   console.log(element);
+  // });
+ 
+  var table = document.getElementById("employeeList");
+  for (var i = 0, row; row = table.rows[i]; i++) {
+     //iterate through rows
+     //rows would be accessed using the "row" variable assigned in the for loop
+     for (var j = 0, col; col = row.cells[j]; j++) {
+      console.log(col.innerHTML);
+      if(col.firstElementChild)
+      {
+        
+        console.log(col.firstElementChild.checked);
+      }
+       //iterate through columns
+       //columns would be accessed using the "col" variable assigned in the for loop
+     }  
   }
-  else
-  {
-    var mybar = document.getElementById("myBar");
-    mybar.style.width = 100 + "%";
-    mybar.textContent = "FAILED";
-  }
-  console.log("done");
+  // var mybar = document.getElementById("myBar");
+  // mybar.style.width = 0 + "%";
+  // mybar.textContent = "";
+
+  // intervalId = setInterval(DisplayProgress, 500);
+  // console.log("Time consuming process started");
+  // isComplete  = await PerformDummyProcess();
+  // console.log("Time consuming process done");
+
+  // if(isComplete)
+  // {
+  //   console.log("Clearing interval");
+  //   clearInterval(intervalId);
+  //   var mybar = document.getElementById("myBar");
+  //   mybar.style.width = 100 + "%";
+  //   mybar.textContent = "SUCESS";
+  // }
+  // else
+  // {
+  //   var mybar = document.getElementById("myBar");
+  //   mybar.style.width = 100 + "%";
+  //   mybar.textContent = "FAILED";
+  // }
+  // console.log("done");
 }
 
 
@@ -239,9 +261,12 @@ function insertNewRecord(data) {
   cell4 = newRow.insertCell(3);
   cell4.innerHTML = data.city;
 
+  // cell4 = newRow.insertCell(4);
+  // cell4.innerHTML = `<a onClick="onEdit(this)"> Edit</a>
+  //                       <a onClick="onDelet(this)"> Delete</a>`;
+
   cell4 = newRow.insertCell(4);
-  cell4.innerHTML = `<a onClick="onEdit(this)"> Edit</a>
-                        <a onClick="onDelet(this)"> Delete</a>`;
+  cell4.innerHTML = ` <input type="checkbox" value=data.fullName checked="true" >`;
 }
 
 function resetform() {

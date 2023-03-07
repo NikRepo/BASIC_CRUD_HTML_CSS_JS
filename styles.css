@@ -1,7 +1,11 @@
 body > table{
-    width: 80%;
+    width: 70%;
 }
 
+#employeeList
+{
+  width: 70%;
+}
 table{
     border-collapse: collapse;
     background-color: grey;
@@ -62,7 +66,7 @@ label.validation-error{
     display:none;
 }
 #myProgress {
-    width: 100%;
+    width: 70%;
     background-color: grey;
   }
   
