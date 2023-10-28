@@ -1,63 +1,123 @@
-body > table{
-    width: 80%;
+/* Reset some default styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-table{
-    border-collapse: collapse;
-    background-color: grey;
-}
-table.list{
-    width:100%;
+/* Center the container horizontally and vertically */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-td, th {
-    border: 1px solid #dddddd;
+/* Style the form container */
+.form-container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.form-container h1 {
+    font-size: 1.5em;
+}
+
+/* Style the form elements */
+.form-group {
+    margin-bottom: 10px;
     text-align: left;
-    padding: 8px;
-}
-tr:nth-child(even),table.list thead>tr {
-    background-color: #dddddd;
 }
 
-input[type=text], input[type=number] {
+.form-group label {
+    display: block;
+}
+
+input[type="text"],
+input[type="number"] {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    border-radius: 3px;
 }
 
-input[type=submit]{
-    width: 200;/*25%*/
-    max-height: 25px;
-    background-color: #ddd;
-    color: #000;
-    padding: 8px 8px 8px 8px;
-    margin: 4px 4px 4px 4px;
+.form-action-buttons button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
     border: none;
-    border-radius: 1px;
+    border-radius: 3px;
     cursor: pointer;
     text-align: center;
 }
 
-form div.form-action-buttons{
-    text-align: right;
+.form-action-buttons button:hover {
+    background-color: #0056b3;
 }
 
-a{
+/* Style the list container */
+.list-container {
+    margin-left: 20px;
+}
+
+.list-container h1 {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.employee-list {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.employee-list th, .employee-list td {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.employee-list thead tr {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.employee-list tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style the JSON output section */
+.json-output {
+    text-align: center;
+}
+
+.json-output h1 {
+    font-size: 1.5em;
+}
+
+.json-output button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
-    text-decoration: underline;
-    color: #0000ee;
-    margin-right: 4px;
 }
 
-label.validation-error{
-    color:   red;
-    margin-left: 5px;
-}
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
 
-.hide{
-    display:none;
+    .form-container, .list-container {
+        width: 90%;
+    }
 }
