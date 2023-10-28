@@ -1,84 +1,62 @@
 <!DOCTYPE html>
 <html>
-<!-- credit :https://www.youtube.com/watch?v=-rNQeJi3Wp4 -->
 <head>
-    <title>
-        HTML CRUD with pure js
-    </title>
+    <title>HTML CRUD with Pure JavaScript</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- bootstrap -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 </head>
 
 <body>
-    <!-- jsut to get input data - need first table , (later to display grid (list) another table added) -->
-    <table>
-        <tr>
-            <td>
-                <!-- note: disable default behavior like querying   event.preventDefault() followed by custom function-->
-                <form onsubmit="event.preventDefault();onFormSubmit()" autocomplete="off">  
-                    <div>
-                        <!-- <label>Full Name</label>  below label inside the label for required field-->
-                        <label>Full Name*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
-                        <input type="text" , name="fullName" id="fullName" onkeyup="autofilltitle()">
-                    </div>
+    <div class="container">
+        <div class="form-container">
+            <h1>Add Employee</h1>
+            <form id="employeeForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" name="fullName" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="empCode">EMP Code</label>
+                    <input type="text" name="empCode" id="empCode">
+                </div>
+                <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <input type="number" name="salary" id="salary">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city">
+                </div>
+                <div class="form-action-buttons">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
 
-                    <div>
-                        <label>EMP code</label>
-                        <input type="text" , name="empCode" id="empCode">
-                    </div>
+        <div class="list-container">
+            <h1>Employee List</h1>
+            <table class="employee-list">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>EMP Code</th>
+                        <th>Salary</th>
+                        <th>City</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeList">
+                    <!-- Employee list items will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                    <div>
-                        <label>Salary</label>
-                        <input type="text" , name="salary" id="salary">
-                    </div>
-
-                    <div>
-                        <label>City</label>
-                        <input type="text" , name="city" id="city">
-                    </div>
-
-                    <div class="form-action-buttons">
-                        <input type="submit" , value="Submit" >
-                    </div>
-
-                </form>
-            </td>
-            <td>
-                <!-- to populate records -->
-                <table class="list" id="employeeList">
-                    <thead>
-                        <tr>
-                          <th>fullName</th>  
-                          <th>EMP Code</th>  
-                          <th>Salary</th>  
-                          <th>City</th>  
-                          <th></th>  
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <!-- added list here dynamically on submit -->
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-    <br>
-    <h0>The Json Output: </h0>
-    <br><br>
-    <div>
-        <button onclick="OnStartSubmit()">Start</button>
-      </div>
-    <!-- holder json output -->
-    <pre id="myJson" ></pre>
+    <div class="json-output">
+        <h1>The JSON Output:</h1>
+        <button id="startButton">Start</button>
+        <pre id="myJson"></pre>
+    </div>
 
     <script src="script.js"></script>
-    <script src="BaseService.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body>
 </body>
-
-</html>
-
 </html>
